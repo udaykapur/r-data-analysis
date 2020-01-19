@@ -6,7 +6,7 @@ Something I came across while working on a data extract and thought it would nic
 
 Raw data looks like this:
 
-date\_time**|**unique\_id**|**value\_strg
+**date\_time**|**unique\_id**|**value\_strg**
 :-----:|:-----:|:-----:
 01APR2019:00:40:59.143344|6bac10fc9dbf4930bbac9221e431f491|AB\_XX\_TC\_01
 01APR2019:00:44:26.633913|dc06372e007c46faa3417e9e0191653b|AB\_XX\_TC\_01
