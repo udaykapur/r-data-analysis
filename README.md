@@ -22,3 +22,28 @@ Raw data looks like this:
 
 
 
+
+Oracle SQL query to extract the data that we need from the above list
+
+```
+select
+--    trunc(date_time)||' '||EXTRACT (HOUR FROM CAST (date_time AS TIMESTAMP)) as date_hr,
+    1 + TRUNC (date_time) - TRUNC (date_time, 'IW') as day_week,
+    EXTRACT (HOUR FROM CAST (date_time AS TIMESTAMP)) as date_hr,
+    substr(value_strg,1,1) as strg_priority,
+    count( distinct unique_id ) as count_id
+  from
+    sample_data
+  where
+        substr(value_strg,1,1) not in  ('T','R')
+    and date_time >= '01/APR/19'
+  group by
+      1 + TRUNC (date_time) - TRUNC (date_time, 'IW'),
+      EXTRACT (HOUR FROM CAST (date_time AS TIMESTAMP)),
+--    trunc(date_time)||' '||EXTRACT (HOUR FROM CAST (date_time AS TIMESTAMP)),
+    substr(value_strg,1,1)
+  order by
+    1 + TRUNC (date_time) - TRUNC (date_time, 'IW') asc,
+    EXTRACT (HOUR FROM CAST (date_time AS TIMESTAMP)) asc;
+```
+
